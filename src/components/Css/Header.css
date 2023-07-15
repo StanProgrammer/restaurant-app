@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&display=swap');
+.container {
+    background-color: blue;
+    padding-top: 16px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: auto;
+    margin: 0 auto;
+    background-color: #008080;
+  }
+  
+  .cartIcon {
+    color: white;
+    font-size: 28px; 
+    margin-right: 4px;
+  }
+  
+ 
+  
+  .restaurantName {
+    font-size: 34px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 11px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    padding: 8px;
+    border-radius: 8px;
+    margin-left: 90px;
+}
+
+  
+  .cartContainer {
+    display: flex;
+    align-items: center;
+    background-color: #d31313;
+        
+    border-radius: 9999px;
+    padding: 16px 12px;
+    width : 15%;
+    height: 10%;
+    margin-right: 90px;
+  }
+  
+  .cartText {
+    font-weight: bold;
+    font-size: 24px;
+    margin-left: 4px;
+    color: white
+  }
+  
+  .cartValue {
+    background-color: #fff;
+    border-radius: 9999px;
+    padding: 4px 8px;
+    margin-left: 15px;
+    width:20%;
+    
+  }
+  
+  .cartNumber {
+    font-size: 14px;
+    font-weight: bold;
+    color: #008080;
+  }
+  
