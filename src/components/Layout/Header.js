@@ -6,7 +6,7 @@ const Header = () => {
   return (
     
       <div className="header">
-        <span className="restaurantName">ReactMeals</span>
+        <span className="restaurantName">The Indian Feast</span>
         <button className="cartContainer">
         <FiShoppingCart className="cartIcon" />
           

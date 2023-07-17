@@ -7,7 +7,7 @@ const WelcomeCard = () => {
     <div className="contentContainer">
       <div className="welcomeCard">
         <h2>Welcome to ReactMeals</h2>
-        <p>Enjoy a delightful dining experience with us.</p>
+        <p>Delicious Food Delivered to you.</p>
       </div>
       <CuisineCard />
       <img
