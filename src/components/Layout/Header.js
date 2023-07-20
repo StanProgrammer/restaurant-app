@@ -6,28 +6,8 @@ import CartHover from "./CartHover";
 import CuisineCard from "../Card/CuisineCard";
 
 const Header = () => {
-  const [showCartHover, setShowCartHover] = useState(true);
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Paneer Masala",
-      price: 100,
-      image: "../Images/paneer.jpg",
-      amount: 2,
-    },
-    {
-      id: 2,
-      name: "Hyderabadi Biryani",
-      price: 150,
-      image: "../Images/Chicken biryani.jpg",
-      amount: 1,
-    },
-  ]);
-
-  const updateCart = (dishes) => {
-    const updatedCartItems = dishes.filter((dish) => dish.amount > 0);
-    setCartItems(updatedCartItems);
-  };
+  const [showCartHover, setShowCartHover] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   const handleCartClick = () => {
     setShowCartHover(true);
@@ -52,7 +32,7 @@ const Header = () => {
           <CartHover dishes={cartItems} onClose={handleCloseCartHover} />,
           document.body
         )}
-      <CuisineCard updateCart={updateCart} />
+      <CuisineCard updateCart={setCartItems} />
     </div>
   );
 };

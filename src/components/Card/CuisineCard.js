@@ -40,7 +40,8 @@ const initialDishes = [
   },
 ];
 
-const CuisineCard = () => {
+const CuisineCard = ({ updateCart}) => {
+ 
   const [currentDishIndex, setCurrentDishIndex] = useState(0);
   const [dishes, setDishes] = useState(initialDishes);
 
@@ -59,13 +60,11 @@ const CuisineCard = () => {
   const handleAdd = () => {
     const updatedDishes = [...dishes];
     const currentDish = updatedDishes[currentDishIndex];
-    
     if (currentDish) {
       currentDish.amount += 1;
       setDishes(updatedDishes);
     }
   };
-  
 
   const currentDish = dishes[currentDishIndex];
 
