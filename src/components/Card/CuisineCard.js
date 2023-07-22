@@ -1,49 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "../Css/CuisineCard.css";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { CartContext } from "../Context/CartContext"; 
+
 
 const initialDishes = [
   {
     id: 1,
     name: "Paneer Masala",
-    price: "₹100",
+    price: 100,
     image: "../Images/paneer.jpg",
     amount: 0,
   },
   {
     id: 2,
     name: "Hyderabadi Biryani",
-    price: "₹150",
+    price: 150,
     image: "../Images/Chicken biryani.jpg",
     amount: 0,
   },
   {
     id: 3,
     name: "Makki Roti With Sarson Saag",
-    price: "₹120",
+    price: 120,
     image: "../Images/mak1.jpg",
     amount: 0,
   },
   {
     id: 4,
     name: "Pav Bhaji",
-    price: "₹180",
+    price: 180,
     image: "../Images/pav.jpg",
     amount: 0,
   },
   {
     id: 5,
     name: "Malai Kofta",
-    price: "₹140",
+    price: 140,
     image: "../Images/malai.jpg",
     amount: 0,
   },
 ];
 
-const CuisineCard = ({ updateCart}) => {
- 
+const CuisineCard = () => {
   const [currentDishIndex, setCurrentDishIndex] = useState(0);
-  const [dishes, setDishes] = useState(initialDishes);
+  const [dishes] = useState(initialDishes);
+  const { cartItems, setCartItems } = useContext(CartContext); 
 
   const handleNextDish = () => {
     setCurrentDishIndex((prevIndex) =>
@@ -60,9 +62,15 @@ const CuisineCard = ({ updateCart}) => {
   const handleAdd = () => {
     const updatedDishes = [...dishes];
     const currentDish = updatedDishes[currentDishIndex];
-    if (currentDish) {
-      currentDish.amount += 1;
-      setDishes(updatedDishes);
+
+    const existingDish = cartItems.find((item) => item.id === currentDish.id);
+
+    if (existingDish) {
+      existingDish.amount += 1;
+      setCartItems([...cartItems]);
+    } else {
+      currentDish.amount = 1;
+      setCartItems((prevCartItems) => [...prevCartItems, currentDish]);
     }
   };
 

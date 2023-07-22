@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ReactDOM from "react-dom";
 import "../Css/Header.css";
 import { FiShoppingCart } from "react-icons/fi";
 import CartHover from "./CartHover";
 import CuisineCard from "../Card/CuisineCard";
-
+import { CartContext } from "../Context/CartContext"; 
 const Header = () => {
   const [showCartHover, setShowCartHover] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const { cartItems } = useContext(CartContext); 
 
   const handleCartClick = () => {
     setShowCartHover(true);
@@ -17,6 +17,9 @@ const Header = () => {
     setShowCartHover(false);
   };
 
+  // Calculate the total count of all items in the cart
+  const cartNumber = cartItems.reduce((total, item) => total + item.amount, 0);
+
   return (
     <div className="header">
       <span className="restaurantName">The Indian Feast</span>
@@ -24,7 +27,7 @@ const Header = () => {
         <FiShoppingCart className="cartIcon" />
         <span className="cartText">Your Cart</span>
         <div className="cartValue">
-          <span className="cartNumber">{cartItems.length}</span>
+          <span className="cartNumber">{cartNumber}</span>
         </div>
       </button>
       {showCartHover &&
@@ -32,7 +35,7 @@ const Header = () => {
           <CartHover dishes={cartItems} onClose={handleCloseCartHover} />,
           document.body
         )}
-      <CuisineCard updateCart={setCartItems} />
+      <CuisineCard />
     </div>
   );
 };
