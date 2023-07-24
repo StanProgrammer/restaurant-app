@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { BsPlus, BsDash } from "react-icons/bs";
 import "../Css/CartHover.css";
+import { CartContext } from "../Context/CartContext"; 
 
-const CartHover = ({ dishes, onClose }) => {
+const CartHover = ({ dishes, onRemove, onDecrease, onIncrease, onClose }) => {
+  const { cartItems, setCartItems } = useContext(CartContext); 
+
   const totalAmount = dishes.reduce(
     (total, dish) => total + dish.amount * dish.price,
     0
@@ -15,8 +19,19 @@ const CartHover = ({ dishes, onClose }) => {
           {dishes.map((dish) => (
             <li key={dish.id} className="dishItem">
               <span className="dishName">{dish.name}</span>
-              <span className="dishAmount">x{dish.amount}</span>
+              <div className="quantityContainer">
+                <button className="quantityButton" onClick={() => onDecrease(dish.id)}>
+                  <BsDash />
+                </button>
+                <span className="dishAmount">{dish.amount}</span>
+                <button className="quantityButton" onClick={() => onIncrease(dish.id)}>
+                  <BsPlus />
+                </button>
+              </div>
               <span className="dishPrice">₹{dish.price * dish.amount}</span>
+              <button className="removeButton" onClick={() => onRemove(dish.id)}>
+                Remove
+              </button>
             </li>
           ))}
         </ul>
